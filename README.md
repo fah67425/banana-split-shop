@@ -4,6 +4,9 @@ Welcome to Banana Split Simulator! Run your own banana split shop, prepare custo
 
 ## How to Play
 
+Visit the Banana Split Simulator here:
+https://fah67425.github.io/banana-split-shop/
+
 ### 1. Prepare the Banana
 - Click the Split Banana button.
 - Your banana must be split before adding ice cream.
