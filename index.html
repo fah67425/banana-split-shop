@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>banana split shop</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>welcome to banana split shop</h1>
+        <p id="money">coins: 0</p>
+        <div id="game">
+            <div id="customer">
+                <h2>customer</h2>
+                <p>hello! heres my order</p>
+                <div id="orderdetails">loading order.........</div>
+
+                <h3 id="customerstatus">WAITING FOR YOUR DESSERT........</h3>
+            </div>
+
+            <div id="kitchen">
+                <h2>your kitchen</h2>
+                
+                <div id="banana" class="banana whole">
+                    <div class="half left"></div>
+                    <div class="half right"></div>
+                </div>
+                <p id="bananastatus">banana: whole</p>
+                <h3>choose your ice cream</h3>
+                <div id="flavours">
+                    <button onclick="addicecream('vanilla')">VANILLA</button>
+                    <button onclick="addicecream('chocolate')">CHOCOLATE</button>
+                    <button onclick="addicecream('strawberry')">STRAWBERRY</button>
+                </div>
+
+                <div id="scoops"></div>
+                <p id="icecreamstatus">ice cream: none</p>
+
+                <h3>Toppings</h3>
+
+                <button onclick="addcherry()">ADD CHERRY</button>
+                <button onclick="addchocolatesauce()">ADD CHOCOLATE SAUCE</button>
+                <button onclick="addsprinkles()">ADD SPRINKLES</button>
+                <button onclick="addnuts()">ADD NUTS</button>
+                <div id="toppings"></div>
+
+                <button onclick="splitbanana()">SPLIT BANANA</button>
+
+                <br><br>
+
+                <button onclick="servecustomer()">COMPLETE ORDER</button>
+            </div>
+
+            <div id="shop">
+                <h2>UPGRADE SHOP</h2>
+
+                <p>spend your coins to unlock new upgrades!</p>
+                
+                <div class="shop-item">
+                    <h3>sprinkles</h3>
+                    <p>price: 30 coins</p>
+                    <button id="buysprinkles" onclick="buytopping('sprinkles',30,'buysprinkles')">BUY SPRINKLES</button>
+                </div>
+
+                <div class="shop-item">
+                    <h3>nut crumbs</h3>
+                    <p>price: 40 coins</p>
+                    <button id="buynuts" onclick="buytopping('nuts',40,'buynuts')">BUY NUTS</button>
+                </div>
+
+                <div class="shop-item">
+                    <h3>bigger tray</h3>
+                    <p>increase maximum scoop from 3 to 4</p>
+                    <p>price: 100 coins</p>
+                    <button id="buytray" onclick="buyupgrade('tray')">BUY UPGRADE</button>
+                </div>
+
+                <div class="shop-item">
+                    <h3>higher reward</h3>
+                    <p>earn higher reward from orders</p>
+                    <p>price: 60 coins</p>
+                    <button id="buyrewards" onclick="buyupgrade('rewards')">BUY UPGRADE</button>
+                </div>
+
+                <p id="shopmessage">welcome to the ingredient shop!</p>
+            </div>
+
+            <div id="resetarea">
+                <h2>game setting (terra reviewer special)</h2>
+
+                <button onclick="resetgame()">RESET GAME</button>
+                <button onclick="addcoins()">+100 COINS TO FASTER THE REVIEW PROCESS</button>
+            </div>
+
+            <div id="history">
+                <h2>order history</h2>
+                <div id="historylist">NO ORDERS YET.</div>
+            </div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
