@@ -13,6 +13,11 @@ let totalorders = Number(localStorage.getItem("totalorders")) || 0;
 let happyorders = Number(localStorage.getItem("happyorders")) || 0;
 let angryorders = Number(localStorage.getItem("angryorders")) || 0;
 let totalearned = Number(localStorage.getItem("totalearned")) || 0;
+let flavourstats = JSON.parse(localStorage.getItem("flavourstats")) || {
+    vanilla: 0,
+    chocolate: 0,
+    strawberry: 0
+};
 
 function splitbanana() {
     if (bananaprepared) {
@@ -55,6 +60,12 @@ function servecustomer() {
     }
     
     let happy = compareorders();
+    for (let flavour of currentorder.flavours) {
+        if (flavourstats[flavour] !== undefined) {
+            flavourstats[flavour]++;
+        }
+    }
+    updateflavourstats();
     let status = document.getElementById("customerstatus");
     totalorders++;
  
@@ -296,6 +307,7 @@ function resetgame() {
     localStorage.removeItem("happyorders");
     localStorage.removeItem("angryorders");
     localStorage.removeItem("totalearned");
+    localStorage.removeItem("flavourstats");
     //kitchen
     selectedflavours = [];
     selectedtoppings = [];
@@ -314,6 +326,7 @@ function resetgame() {
     refreshshopbutton();
     refreshupgradebutton();
     updatestats();
+    updateflavourstats();
 }
 
 function addcoins() {
@@ -332,6 +345,42 @@ function updatestats() {
     localStorage.setItem("happyorders", happyorders);
     localStorage.setItem("angryorders", angryorders);
     localStorage.setItem("totalearned", totalearned);
+
+    updateflavourstats();
 }
 
 updatestats();
+
+function updateflavourstats() {
+    let total = flavourstats.vanilla + flavourstats.chocolate + flavourstats.strawberry;
+    let flavours = ["vanilla","chocolate","strawberry"];
+
+    for (let flavour of flavours) {
+        let count = flavourstats[flavour];
+        let percentage = total === 0 ? 0 : (count / total) * 100;
+
+        document.getElementById(flavour + "count").textContent = count;
+        document.getElementById(flavour + "ratio").textContent = percentage.toFixed(1) + "%";
+        document.getElementById(flavour + "bar").style.width = percentage + "%";
+    }
+
+    let highest = Math.max(flavourstats.vanilla,flavourstats.chocolate,flavourstats.strawberry);
+    let popular = "none";
+
+    if (total > 0) {
+        if (flavourstats.vanilla === highest) {
+            popular = "vanilla";
+        } if (flavourstats.chocolate === highest) {
+            popular = popular === "none" ?
+             "chocolate" : "tie";
+        } if (flavourstats.strawberry === highest) {
+            popular = popular === "none" ? 
+             "strawberry" : "tie";
+        }
+    }
+
+    document.getElementById("mostpopular").textContent = "most popular: " + popular;
+    localStorage.setItem("flavourstats", JSON.stringify(flavourstats));
+}
+
+updateflavourstats();

@@ -307,3 +307,40 @@ half::after {
 #angryorders {
     color: red;
 }
+
+#flavourdashboard {
+    flex-basis: 100%;
+    background: white;
+    border: 2px solid #e7c99c;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.flavourstat {
+    margin: 15px 0;
+}
+
+.flavourstat strong {
+    float: right;
+}
+
+.flavourbar {
+    width: 100%;
+    height: 12px;
+    background: darkgoldenrod;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.flavourbar div {
+    width: 0%;
+    height: 100%;
+    background: #d69a52;
+    transition: width 0.4s;
+}
+
+#mostpoplar {
+    color: #80502b;
+}
