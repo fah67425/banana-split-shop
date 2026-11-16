@@ -6,6 +6,7 @@ Welcome to Banana Split Simulator! Run your own banana split shop, prepare custo
 
 Visit the Banana Split Simulator here:
 https://fah67425.github.io/banana-split-shop/
+*not recommended on mobile
 
 ### 1. Prepare the Banana
 - Click the Split Banana button.
