@@ -9,6 +9,10 @@ let selectedflavours = [];
 let selectedtoppings = [];
 let currentorder = {};
 let ordernumber = 0;
+let totalorders = Number(localStorage.getItem("totalorders")) || 0;
+let happyorders = Number(localStorage.getItem("happyorders")) || 0;
+let angryorders = Number(localStorage.getItem("angryorders")) || 0;
+let totalearned = Number(localStorage.getItem("totalearned")) || 0;
 
 function splitbanana() {
     if (bananaprepared) {
@@ -52,18 +56,23 @@ function servecustomer() {
     
     let happy = compareorders();
     let status = document.getElementById("customerstatus");
+    totalorders++;
  
     if (happy) {
         status.textContent = "CUSTOMER HAPPY!";
         status.className = "happy";
 
         coins += orderreward;
-
+        happyorders++;
+        totalearned += orderreward;
         updatecoins();
     } else {
         status.textContent = "CUSTOMER MAD!";
         status.className = "mad";
+        angryorders++;
     }
+
+    updatestats();
 
     let historyitem = document.createElement("div");
 
@@ -263,7 +272,7 @@ function addtopping(name, classname) {
 }
 
 function resetgame() {
-    let confirmed = confirm("are u sure? you'll lost all coins, purchases history and upgrades.");
+    let confirmed = confirm("are u sure? you'll lost all coins, purchases history, upgrades and all shop statistic data");
 
     if (!confirmed) return;
 
@@ -272,6 +281,10 @@ function resetgame() {
     orderreward = 20;
     upgrades = { tray: false, rewards: false };
     ownedtoppings = {};
+    totalorders = 0;
+    happyorders = 0;
+    angryorders = 0;
+    totalearned = 0;
 
     //clear all the localstorageeeee
     localStorage.removeItem("bananacoins");
@@ -279,6 +292,10 @@ function resetgame() {
     localStorage.removeItem("shopupgrades");
     localStorage.removeItem("maxscoops");
     localStorage.removeItem("orderreward");
+    localStorage.removeItem("totalorders");
+    localStorage.removeItem("happyorders");
+    localStorage.removeItem("angryorders");
+    localStorage.removeItem("totalearned");
     //kitchen
     selectedflavours = [];
     selectedtoppings = [];
@@ -296,6 +313,7 @@ function resetgame() {
     randomorders();
     refreshshopbutton();
     refreshupgradebutton();
+    updatestats();
 }
 
 function addcoins() {
@@ -303,3 +321,17 @@ function addcoins() {
     alert("you got 100 coins!")
     updatecoins();
 }
+
+function updatestats() {
+    document.getElementById("totalorders").textContent = totalorders;
+    document.getElementById("happyorders").textContent = happyorders;
+    document.getElementById("angryorders").textContent = angryorders;
+    document.getElementById("totalearned").textContent = totalearned;
+
+    localStorage.setItem("totalorders", totalorders);
+    localStorage.setItem("happyorders", happyorders);
+    localStorage.setItem("angryorders", angryorders);
+    localStorage.setItem("totalearned", totalearned);
+}
+
+updatestats();

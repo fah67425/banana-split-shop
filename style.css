@@ -270,3 +270,40 @@ half::after {
     background: green;
     color: red;
 }
+
+#stats {
+    flex-basis: 100%;
+    background: blue;
+    border: 8px solid greenyellow;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.statgrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.statcard {
+    padding: 12px;
+    background: greenyellow;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#stats h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    color: lightgreen;
+}
+
+.statcard p {
+    font-size: 30px;
+}
+
+#angryorders {
+    color: red;
+}
